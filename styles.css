@@ -159,12 +159,10 @@ body{
 }
 
 .time-breakdown-item{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    width: 100%;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    padding-bottom: 1rem;
+    padding-top: 1rem;
     gap: 1.3rem;
 }
 .breakdown-item{
@@ -273,4 +271,12 @@ body{
 .born-day{
     color: var(--birth-card-icon);
     font-weight: bold;
+}
+@media screen and (max-width : 540px) {
+    .fun-facts-sub-div{
+        flex-direction: column;
+    }
+    .time-breakdown-item{
+        grid-template-columns: repeat(3,1fr);
+    }
 }
