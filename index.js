@@ -114,10 +114,22 @@ calculateAgeBtn.addEventListener("click", function () {
 
 
 
-function yearsAndMonthsCalculations(currentFullYear, currentMonth, birthYear, bornMonth) {
+function yearsAndMonthsCalculations(currentFullYear, currentMonth, birthYear, bornMonth, currentDate, birthInputvalueToObject) {
     let yearsOld = currentFullYear - birthYear;
 
-    let monthsOld = currentMonth - bornMonth;
+    // Check if birthday has passed this year
+    let hasBirthdayPassed =
+        currentMonth > bornMonth ||
+        (currentMonth === bornMonth && currentDate.getDate() >= birthInputvalueToObject.getDate());
+
+    if (!hasBirthdayPassed) {
+        yearsOld--; // subtract one year if birthday hasn't happened yet
+    }
+
+    let monthsOld = (currentMonth - bornMonth);
+    if (!hasBirthdayPassed) {
+        monthsOld = (12 + currentMonth - bornMonth) % 12; // adjust months if birthday not yet reached
+    }
 
     let totalMonthsLived = yearsOld * 12 + monthsOld;
 
